@@ -25,8 +25,13 @@ end
 
 def get_english_meaning(file, emoticon)
   lib = load_library(file)
-  answer = lib["get_meaning"][emoticon]
-  if answer == nil
+  answer = ""
+  lib["get_meaning"].each do |jap, meaning|
+    if jap == emoticon
+      answer = meaning
+    end
+  end
+  if answer = "" 
     return "Sorry, that emoticon was not found"
   else
     return answer
